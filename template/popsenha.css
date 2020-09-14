@@ -1,0 +1,50 @@
+*{margin:0}*,
+body{font-family:arial}
+body{
+	background-color: #ffff;
+	background-image: url(../../imagens/site/background/img9.png);
+	background-position: center top;
+	background-repeat: no-repeat
+}
+.center {
+	margin:auto;
+	width:500px;
+	height:323px;
+}
+
+.titulom {
+	width:500px;
+	height:35px;
+}
+.titulop {
+	margin-left:35px;
+	text-align:left;
+	margin-top:10px;
+	width: 280px;
+	float: left;
+	font-family:Arial;font-size:18px;color: #FFFFFF;text-shadow:2px 0 0 #09132C,-2px 0 0 #09132C,0 2px 0 #09132C,0 -2px 0 #09132C,1px 1px #09132C,-1px -1px 0 #09132C,1px -1px 0 #09132C,-1px 1px 0 #09132C;font-weight:700
+}
+
+
+.namein {
+width:450px;height:4px;border-radius:3px;background-color:#09132C;
+
+}
+
+.noticia {
+	text-align:left;
+	margin-top:10px;
+	width:440px;
+font-family:Arial;font-size:15px;color:#09132C
+}
+.noticia2 {
+	width:440px;
+font-family:Arial;font-size:15px;color:#09132C
+}
+
+.download{margin:auto;width:481px;height:300px;background-image:url(../../imagens/site/img32.png);background-repeat:no-repeat;background-position:right bottom}.download2{margin-top:5px;margin-left:30px;float:left;border-radius:5px;background-color:#e8cdd6}.download2,.download20{
+	width: 370px;
+	height: 56px
+}.download20,.download21{margin-top:10px;margin-left:25px;float:left;border-radius:5px;background-color:#e8cdd6}.download21{width:400px;height:123px}.download3{margin-top:4px}.download3,.download31{margin-left:5px;width:54px;height:50px;background-image:url(../../imagens/site/img31.png);background-repeat:no-repeat;background-position:center center}.download31{margin-top:38px}.download4{width:300px}.download4,.download41{text-align:center;float:right;margin-top:11px;margin-right:12px}.download41{width:378px}.download5{float:right;margin-top:74px;margin-right:100px}
+
+button.css3button{font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#fff;padding:4px 12px;background:-moz-linear-gradient(top,#6591bc 0%,#6591bc);background:-webkit-gradient(linear,left top,left bottom,from(#6591bc),to(#6591bc));-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:4px;border:1px solid #000;-moz-box-shadow:1px 1px 2px rgba(0,0,0,.5),inset 0 0 2px rgba(255,255,255,1);-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.5),inset 0 0 2px rgba(255,255,255,1);box-shadow:1px 1px 2px rgba(0,0,0,.5),inset 0 0 2px rgba(255,255,255,1);text-shadow:0 1px 5px rgba(3,3,3,1),0 1px 0 rgba(255,255,255,1)}

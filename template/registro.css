@@ -1,0 +1,18 @@
+*{margin:0}*,body{font-family:arial}body{-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;background-image:url(../../imagens/site/background/img5.png);background-repeat:no-repeat;background-position:center top}.cinza{background-color:#232323;width:100%}.cinza,.cinza2{margin:auto;height:30px}.cinza2{width:955px}.cinza3{float:right;height:28px;width:110px;padding-top:2px}.cinza4{float:left;font-family:Arial;color:#FFF;font-size:15px;width:840px;height:25px;padding-top:5}.meio{margin:auto;width:955px}.meio3{width:955px;height:747px;margin-top:10px;float:right;background-image:url(../../imagens/site/img22.png);background-position:right top;background-repeat:no-repeat}.logo{margin-left:45px;margin-top:245px;width:254px;height:230px;float:left;background-image:url(../../imagens/site/img21.png)}.backreg{margin-top:81px;margin-right:78px;float:right;width:394px;height:569px;border:0;border-radius:3px;background-color:#dedede}.registro{float:right;margin-top:10px;margin-right:10px;width:374px;height:554px}.textacc{font-size:10px}.text{font-size:12px}.center{text-align:center}a.classe2link2:link,a.classelink:visited{text-decoration:none;color:#000}a.classe2link2:hover{text-decoration:none;color:#000}a.classe2link2:active{text-decoration:none;color:#000}.space{height:1px}.registro2{text-align:center;width:374px;height:43px;font-family:Arial;font-size:30px;color:#232323;text-shadow:2px 0 0 #B1B1B1,-2px 0 0 #B1B1B1,0 2px 0 #B1B1B1,0 -2px 0 #B1B1B1,1px 1px #B1B1B1,-1px -1px 0 #B1B1B1,1px -1px 0 #B1B1B1,-1px 1px 0 #B1B1B1;font-weight:bolder}.spaceerrorreg{height:10px}.spaceerrorreg2{height:12px}.spaceerrorreg3{height:2px}.spaceerrorreg4{height:4px}
+fieldset {
+    font-family: sans-serif;
+    border: 1px solid # 666;
+    background: #ddd;
+    border-radius: 3px;
+    padding: 6px;
+}
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}

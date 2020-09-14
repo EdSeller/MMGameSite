@@ -1,0 +1,50 @@
+*{margin:0}*,
+body{font-family:arial}
+body{
+	background-color: #f5efce;
+	background-image: url(../../imagens/site/background/img8.png);
+	background-position: center top;
+	background-repeat: no-repeat
+}
+.center {
+	margin:auto;
+	width:813px;
+	height:650px;
+}
+
+.titulom {
+	width:813px;
+	height:48px;
+}
+.titulop {
+	margin-left:20px;
+	text-align:left;
+	margin-top:10px;
+	width: 580px;
+	float: left;
+	font-family:Arial;font-size:26px;color:#09132C;text-shadow:2px 0 0 #ffbd31,-2px 0 0 #ffbd31,0 2px 0 #ffbd31,0 -2px 0 #ffbd31,1px 1px #ffbd31,-1px -1px 0 #ffbd31,1px -1px 0 #ffbd31,-1px 1px 0 #ffbd31;font-weight:700
+}
+
+.titulod {
+	margin-right:20px;
+	text-align:right;
+	margin-top:20px;
+	width: 170px;
+	float: right;
+	font-family: Arial;
+	font-size: 17px;
+	color: #000;
+	font-family:Arial;font-size:22px;color:#09132C;text-shadow:2px 0 0 #ffbd31,-2px 0 0 #ffbd31,0 2px 0 #ffbd31,0 -2px 0 #ffbd31,1px 1px #ffbd31,-1px -1px 0 #ffbd31,1px -1px 0 #ffbd31,-1px 1px 0 #ffbd31;font-weight:700
+}
+
+.namein {
+width:788px;height:4px;border-radius:3px;background-color:#09132C;
+
+}
+
+.noticia {
+	margin-top:10px;
+	width:775px;
+	height:577px;
+font-family:Arial;font-size:17px;color:#564b47
+}
