@@ -161,6 +161,8 @@ function patch_notes () {
   echo '</table>';
 }
 
+//Tabela eventos da Pagina inicial
+
 function eventos () {
   $PDO = db_connect_web_data();
   $sql = "SELECT * FROM news WHERE Tabela = 'eventos' ORDER BY id Desc Limit 5";
@@ -186,3 +188,33 @@ function eventos () {
   }
   echo '</table>';
 }
+
+//Script de cadastro no banco de dados
+
+function registrar($nome, $usuario, $senha, $email, $data) {
+    $pdo = db_connect_member();
+    $cmd = $pdo->prepare("select id_idx from Player where PlayerID  = :usuario");
+      $cmd->bindValue(":usuario",$usuario);
+      $cmd->execute();
+      if($cmd->rowCount() > 0) {
+        echo "<script>alert('Nome de Usuario esta em uso.'); history.back();</script>" ;
+        exit;
+      } 
+    $cmd = $pdo->prepare("select id_idx from Player where email = :email");
+      $cmd->bindValue(":email",$email);
+      $cmd->execute();
+      if($cmd->rowCount() > 0) {
+        echo "<script>alert('Endereço de e-mail esta em uso.'); history.back();</script>" ;
+        exit;
+      }
+   $cmd = $pdo->prepare("INSERT into Player (Name, PlayerID, Passwd, data, Email) VALUES (:nome, :usuario, :senha, :data, :email) ");
+    $cmd->bindValue(":nome",$nome);
+     $cmd->bindValue(":usuario",$usuario);
+     $cmd->bindValue(":senha",$senha);
+     $cmd->bindValue(":data",$data);
+     $cmd->bindValue(":email",$email);
+      $cmd->execute();
+      echo "<script>alert('Registrado com sucesso.'); history.back();</script>" ;
+      exit;
+}
+?>

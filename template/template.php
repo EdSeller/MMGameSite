@@ -36,7 +36,7 @@
                     </div>
                     <div class="login01"></div>
                     <div class="login2">
-                        <a href="/registro/home" class="classelink">Registro</a>
+                        <a href="registro" class="classelink">Registro</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                         <a href="login" class="classelink">Login</a>
                     </div>
                     <div class="login5">
-                        <a href="/registro/home" class="classelink">Reg</a>
+                        <a href="registro" class="classelink">Reg</a>
                     </div>
                 </div>
                 <div class="orange">
