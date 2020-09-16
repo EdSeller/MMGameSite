@@ -9,7 +9,6 @@ function config($key = '') {
     $config = [
         'name' => 'MixMaster',
         'site_url' => 'http://localhost/',
-        'pretty_uri' => true,
         'template_path' => 'template',
         'content_path' => 'content',
         'version' => 'v2.0',

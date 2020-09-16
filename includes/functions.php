@@ -197,14 +197,14 @@ function registrar($nome, $usuario, $senha, $email, $data) {
       $cmd->bindValue(":usuario",$usuario);
       $cmd->execute();
       if($cmd->rowCount() > 0) {
-        echo "<script>alert('Nome de Usuario esta em uso.'); history.back();</script>" ;
+        echo "<script>alert('Nome de Usuario esta em uso.');history.back(); </script>" ;
         exit;
       } 
     $cmd = $pdo->prepare("select id_idx from Player where email = :email");
       $cmd->bindValue(":email",$email);
       $cmd->execute();
       if($cmd->rowCount() > 0) {
-        echo "<script>alert('Endereço de e-mail esta em uso.'); history.back();</script>" ;
+        echo "<script>alert('Endereço de e-mail esta em uso.');history.back();</script>" ;
         exit;
       }
    $cmd = $pdo->prepare("INSERT into Player (Name, PlayerID, Passwd, data, Email) VALUES (:nome, :usuario, :senha, :data, :email) ");
@@ -214,7 +214,33 @@ function registrar($nome, $usuario, $senha, $email, $data) {
      $cmd->bindValue(":data",$data);
      $cmd->bindValue(":email",$email);
       $cmd->execute();
-      echo "<script>alert('Registrado com sucesso.'); history.back();</script>" ;
+      echo "<script>alert('Registrado com sucesso.');history.back();</script>" ;
       exit;
 }
+
+function login($usuario, $senha){
+   $pdo = db_connect_member();
+   $cmd = $pdo->prepare("select id_idx from Player where PlayerID = :usuario AND  Passwd = :senha");
+      $cmd->bindValue(":usuario",$usuario);
+      $cmd->bindValue(":senha",$senha);
+      $cmd->execute();
+      if($cmd->rowCount() > 0) {
+      $_SESSION['usuario'] = $usuario;
+      $_SESSION['senha'] = $senha;
+      echo "<script>alert('Login efetuado com sucesso.'); window.location.href='painel'; </script>" ;
+      exit;
+    }else{
+    unset ($_SESSION['usuario']);
+    unset ($_SESSION['senha']);
+      echo "<script>alert('Usuario ou senha incorretos.');history.back();</script>" ;
+      exit;
+  }
+}
+
+function logout(){
+  unset ($_SESSION['usuario']);
+  unset ($_SESSION['senha']);
+  echo "<script>alert('Login efetuado com sucesso.'); window.location.href='home'; </script>" ;
+  exit;
+    }
 ?>
