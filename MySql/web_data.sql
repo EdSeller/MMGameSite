@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Set-2020 às 04:28
+-- Tempo de geração: 17-Set-2020 às 10:39
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.2.33
 
@@ -697,6 +697,22 @@ INSERT INTO `shopb` (`ItemId`, `Nome`, `Lc`, `Pagina`, `Categoria`, `Quantidade`
 ('81', 'Super Cloud (5U) (30M)', '750', 'Super', 'Hero', '5', '30Minutos', 'Sim', '1', 'Aumenta a velocidade do heroi e de henchs em 2.0 .', '0'),
 ('882', 'Blessed Archer Chisel', '1000', 'Super', 'Hero', '1', 'Termino no uso', 'Sim', '1', 'Adiciona a habilidade de acerto a um equipamento. ', '0');
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `shopl`
+--
+
+CREATE TABLE `shopl` (
+  `id` int(20) NOT NULL,
+  `ip` varchar(70) NOT NULL,
+  `data` date NOT NULL,
+  `hora` time(6) NOT NULL,
+  `lc` int(10) NOT NULL,
+  `valor` varchar(10) NOT NULL,
+  `usuario` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Índices para tabelas despejadas
 --
@@ -708,6 +724,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Índices para tabela `shopl`
+--
+ALTER TABLE `shopl`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -716,6 +738,12 @@ ALTER TABLE `news`
 --
 ALTER TABLE `news`
   MODIFY `Id` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `shopl`
+--
+ALTER TABLE `shopl`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

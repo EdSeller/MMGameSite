@@ -32,11 +32,23 @@
             <div class="login">
                 <div class="login0">
                     <div class="login1">
-                        <a href="login" class="classelink">Login</a>
+                      <?php
+                      if (isset($_SESSION['usuario'])){
+                          echo '<a href="painel" class="classelink">Painel</a>' ;
+                        }else{
+                          echo '<a href="login" class="classelink">Login</a>';
+                        }
+                      ?>
                     </div>
                     <div class="login01"></div>
                     <div class="login2">
-                        <a href="registro" class="classelink">Registro</a>
+                      <?php
+                      if (isset($_SESSION['usuario'])){
+                          echo '<form method="post"><a href="painel" style="margin-left:-5px;" class="classelink"><button type="submit" class="resetform" id="logout" name="logout">Logout</button></a></form>' ;
+                        }else{
+                          echo '<a href="registro" class="classelink">Registro</a>';
+                        }
+                      ?>
                     </div>
                 </div>
             </div>
@@ -57,10 +69,22 @@
             <div class="esquerda2">
                 <div class="login3">
                     <div class="login4">
-                        <a href="login" class="classelink">Login</a>
+                      <?php
+                      if (isset($_SESSION['usuario'])){
+                          echo '<a href="painel" class="classelink">Painel</a>' ;
+                        }else{
+                          echo '<a href="login" class="classelink">Login</a>';
+                        }
+                      ?>
                     </div>
                     <div class="login5">
-                        <a href="registro" class="classelink">Reg</a>
+                      <?php
+                      if (isset($_SESSION['usuario'])){
+                          echo '<form method="post"><a href="painel" style="margin-left:-5px;" class="classelink"><button type="submit" class="resetform" id="logout" name="logout">Logout</button></a></form>' ;
+                        }else{
+                          echo '<a href="registro" class="classelink">Reg</a>';
+                        }
+                      ?>
                     </div>
                 </div>
                 <div class="orange">
@@ -221,5 +245,4 @@
     </div>
     </div>
 </body>
-
 </html>

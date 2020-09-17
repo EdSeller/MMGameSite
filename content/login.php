@@ -1,3 +1,6 @@
+<?php
+doublelogin();
+?>
 <div class="conteudoab">
 <div class="namein">Login</div>
 <div class="namein2"></div>
@@ -11,12 +14,12 @@
 <tr>
 <td width="78" height="34">Usuário
 </td>
-<td width="150"><input id="usuario" name="usuario" type="text" minlength="5" maxlength="15" required placeholder="Digite um Usuario" />
+<td width="150"><input id="login" name="login" type="text" minlength="5" maxlength="15" required placeholder="Digite um Usuario" />
 </td>
 </tr>
 <tr>
 <td height="23">Senha</td>
-<td><input id="senha" name="senha" type="password" required placeholder="Digite uma Senha" minlength="5" maxlength="15" title="Senha" class="input" />
+<td><input id="senha" name="senha" type="password" required placeholder="Digite uma Senha" minlength="10" maxlength="15" title="Senha" class="input" />
 </td>
 </tr>
 <tr>
@@ -41,24 +44,3 @@
 </a>
 </div>
 </div>
-<?php
- if(isset($_POST['usuario'])) { 
-  $usuario = ($_POST['usuario']); 
-  $senha = ($_POST['senha']); 
-if (!empty($usuario) && !empty($senha)) {
-	if ((strlen($usuario) < 5) || (strlen($usuario) > 15)) {
-  echo "<script>alert('O campo Usuario precisa conter de 5 a 15 caracteres.'); history.back();</script>" ;
-  exit;
-	} elseif ((strlen($senha) < 5) || (strlen($senha) > 15)) {
-  echo "<script>alert('O campo Senha precisa conter de 5 a 15 caracteres.'); history.back();</script>" ;
-  exit;
-	} else {
-	$senha = hash( 'sha256',$senha); 
-	login ($usuario, $senha);
-    } 
-	} else {
-	 echo "<script>alert('Preencha todos os campos para fazer login.'); history.back();</script>" ;
-   exit;
-}
-}
-  ?>

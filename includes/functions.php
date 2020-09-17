@@ -189,7 +189,53 @@ function eventos () {
   echo '</table>';
 }
 
-//Script de cadastro no banco de dados
+//Checa insformaçoes de registro
+
+ if(isset($_POST['nome'])) { 
+  $nome = ($_POST['nome']); 
+  $usuario = ($_POST['usuario']); 
+  $senha = ($_POST['senha']); 
+  $senhaconf = ($_POST['senhaconf']); 
+  $email = ($_POST['email']); 
+  $emailconf = ($_POST['emailconf']);
+  $data = ($_POST['data']); 
+  $term = ($_POST['term']); 
+if (!empty($nome) && !empty($usuario) && !empty($senha) && !empty($email) && !empty($data) && !empty($senhaconf) && !empty($emailconf)) {
+if ($senha <> $senhaconf) {
+   echo "<script>alert('Senhas nao coincidem.'); history.back();</script>" ;
+   exit;
+} elseif ($email <> $emailconf) {
+   echo "<script>alert('Endereços de e-mail nao coincidem.'); history.back();</script>" ;
+   exit; 
+} elseif ((strlen($nome) < 5) || (strlen($nome) > 50)) {
+  echo "<script>alert('O campo Nome Completo precisa conter de 5 a 50 caracteres.'); history.back();</script>" ;
+  exit;
+} elseif ((strlen($usuario) < 5) || (strlen($usuario) > 15)) {
+  echo "<script>alert('O campo Usuario precisa conter de 5 a 15 caracteres.'); history.back();</script>" ;
+  exit;
+} elseif ((strlen($senha) < 10) || (strlen($senha) > 15)) {
+  echo "<script>alert('O campo Senha precisa conter de 5 a 15 caracteres.'); history.back();</script>" ;
+  exit;
+} elseif ((strlen($email) < 8) || (strlen($email) > 50)) {
+  echo "<script>alert('O campo E-mail Completo precisa conter de 5 a 50 caracteres.'); history.back();</script>" ;
+  exit;
+} elseif (strlen($data) <> 10) {
+  echo "<script>alert('O campo Data precisa conter 10 caracteres.'); history.back();</script>" ;
+  exit;
+} elseif ($term <> "checado") {
+  echo "<script>alert('Voce precisa aceitar o termos de uso para se registrar.'); history.back();</script>" ;
+  exit;
+} else {
+  $senha = hash( 'sha256',$senha); 
+  registrar ($nome, $usuario, $senha, $email, $data);
+}
+} else {
+   echo "<script>alert('Preencha todos os campos para se registrar.'); history.back();</script>" ;
+   exit;
+}
+}
+
+//Faz cadastro no banco de dados
 
 function registrar($nome, $usuario, $senha, $email, $data) {
     $pdo = db_connect_member();
@@ -218,6 +264,39 @@ function registrar($nome, $usuario, $senha, $email, $data) {
       exit;
 }
 
+//Checa acesso a pagina de login
+
+function doublelogin() {
+  if(isset($_SESSION['usuario'])) {
+      echo "<script>alert('Voce ja esta logado.'); window.location.href='painel'; </script>" ;
+      exit;
+  }
+}
+
+//Checa as informaçoes de login
+
+if(isset($_POST['login'])) { 
+  $usuario = ($_POST['login']); 
+  $senha = ($_POST['senha']); 
+if (!empty($usuario) && !empty($senha)) {
+  if ((strlen($usuario) < 5) || (strlen($usuario) > 15)) {
+  echo "<script>alert('O campo Usuario precisa conter de 5 a 15 caracteres.'); history.back();</script>" ;
+  exit;
+  } elseif ((strlen($senha) < 10) || (strlen($senha) > 15)) {
+  echo "<script>alert('O campo Senha precisa conter de 10 a 15 caracteres.'); history.back();</script>" ;
+  exit;
+  } else {
+  $senha = hash( 'sha256',$senha); 
+  login ($usuario, $senha);
+    } 
+  } else {
+   echo "<script>alert('Preencha todos os campos para fazer login.'); history.back();</script>" ;
+   exit;
+}
+}
+
+//Efetua login
+
 function login($usuario, $senha){
    $pdo = db_connect_member();
    $cmd = $pdo->prepare("select id_idx from Player where PlayerID = :usuario AND  Passwd = :senha");
@@ -237,10 +316,39 @@ function login($usuario, $senha){
   }
 }
 
+//Get do logout
+
+if(isset($_POST['logout'])) { 
+ logout();
+}
+
+//Efetua logout
+
 function logout(){
   unset ($_SESSION['usuario']);
   unset ($_SESSION['senha']);
-  echo "<script>alert('Login efetuado com sucesso.'); window.location.href='home'; </script>" ;
+  echo "<script>alert('Logout efetuado com sucesso.'); window.location.href='home'; </script>" ;
   exit;
     }
+
+//Checa acesso as funçoes de painel
+
+function painelp() {
+  $usuario = $_SESSION['usuario'];
+  $senha = $_SESSION['senha'];
+   $pdo = db_connect_member();
+   $cmd = $pdo->prepare("select id_idx from Player where PlayerID = :usuario AND  Passwd = :senha");
+      $cmd->bindValue(":usuario",$usuario);
+      $cmd->bindValue(":senha",$senha);
+      $cmd->execute();
+      if($cmd->rowCount() > 0) {
+      exit;
+    } else {
+      unset ($_SESSION['usuario']);
+      unset ($_SESSION['senha']);
+      echo "<script>alert('Voce precisa efetuar login para acessar essa area.'); window.location.href='login'; </script>" ;
+      exit;
+  }
+}
+
 ?>
