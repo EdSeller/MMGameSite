@@ -9,3 +9,5 @@ Planejado ser desenvolvido as funçoes de de cadastro, login, sistema de noticia
 • Todos arquivos de banco de dados necessarios para funcionamento correto do site estao na pasta "MySql".
 
 • Template baseado no site australiano de 2008. Source: https://web.archive.org/web/20080623201429/http://www.mixmaster.com.au/
+
+• Template disponivel na pasta "Psd".
