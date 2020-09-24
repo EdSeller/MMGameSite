@@ -1,7 +1,7 @@
 <?php
 doublelogin();
 ?>
-<div class="conteudoab">
+<div class="conteudoabb">
 <div class="namein">Login</div>
 <div class="namein2"></div>
 <div class="namein3"></div>
@@ -40,7 +40,9 @@ doublelogin();
 <div class="barlogin">
 </div>
 <div class="logintext">
-<a href="recuperar.php" class="classe2link2">Recuperar conta.
+
+<a href="recuperar.php" class="classe2link2">Recuperar conta
 </a>
 </div>
 </div>
+

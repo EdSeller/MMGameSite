@@ -1,5 +1,43 @@
 <?php
 
+//classe usada para buscar dados da conta
+
+class contagroup {
+
+    public $nome;
+    public $usuario;
+    public $email;
+    public $data;
+    public $lc;
+
+    public function __construct($nome, $usuario, $email, $data, $lc, $id) {
+        $this->nome = $nome;
+        $this->usuario = $usuario;
+        $this->email = $email;
+        $this->data = $data;
+        $this->lc = $lc;
+        $this->id = $id;
+    }
+    public function getNome(){
+        echo $this->nome;
+    }
+    public function getUsuario(){
+        echo $this->usuario;
+    }
+    public function getEmail(){
+        echo $this->email;
+    }
+    public function getData(){
+        echo $this->data;
+    }
+    public function getLc(){
+        echo $this->lc;
+    }
+    public function getId(){
+        return $this->id;
+    }
+}
+
 //Inicia todo template do Site
 
 function init() {
@@ -299,13 +337,15 @@ if (!empty($usuario) && !empty($senha)) {
 
 function login($usuario, $senha){
    $pdo = db_connect_member();
-   $cmd = $pdo->prepare("select id_idx from Player where PlayerID = :usuario AND  Passwd = :senha");
+   $cmd = $pdo->prepare("select PlayerID, Passwd from Player where PlayerID = :usuario AND Passwd = :senha Limit 1");
       $cmd->bindValue(":usuario",$usuario);
       $cmd->bindValue(":senha",$senha);
       $cmd->execute();
       if($cmd->rowCount() > 0) {
       $_SESSION['usuario'] = $usuario;
       $_SESSION['senha'] = $senha;
+      $inforl = conta();
+      $_SESSION['id'] = $inforl->getId();
       echo "<script>alert('Login efetuado com sucesso.'); window.location.href='painel'; </script>" ;
       exit;
     }else{
@@ -327,6 +367,7 @@ if(isset($_POST['logout'])) {
 function logout(){
   unset ($_SESSION['usuario']);
   unset ($_SESSION['senha']);
+  unset ($_SESSION['id']);
   echo "<script>alert('Logout efetuado com sucesso.'); window.location.href='home'; </script>" ;
   exit;
     }
@@ -342,13 +383,114 @@ function painelp() {
       $cmd->bindValue(":senha",$senha);
       $cmd->execute();
       if($cmd->rowCount() > 0) {
-      exit;
     } else {
       unset ($_SESSION['usuario']);
       unset ($_SESSION['senha']);
       echo "<script>alert('Voce precisa efetuar login para acessar essa area.'); window.location.href='login'; </script>" ;
       exit;
-  }
+   }
 }
 
+//Monta Classe com inforçoes da conta. (Nao inclui herois)
+ 
+function conta(){    
+      $usuario = $_SESSION['usuario'];
+      $senha = $_SESSION['senha'];
+      $pdo = db_connect_member();
+      $cmd = $pdo->prepare("select Name, PlayerID, Passwd, data, Email, Lc, id_idx from Player where PlayerID = :usuario AND Passwd = :senha");
+      $cmd->bindValue(":usuario",$usuario);
+      $cmd->bindValue(":senha",$senha);
+      $cmd->execute();
+      $infor = $cmd->fetchAll(PDO::FETCH_ASSOC);
+      foreach($infor as $row) {
+          $nome = $row["Name"];
+          $usuario =  $row["PlayerID"];
+          $email =  $row["data"];
+          $data =  $row["Email"];
+          $lc =  $row["Lc"];
+          $id = $row["id_idx"];
+          $infort = new contagroup($nome, $usuario, $email, $data, $lc, $id);
+          return $infort;
+        }
+}
+
+//Constroi a tabela que contem informaçoes da conta. Faz uso da classe montada pela function "tabelaconta".
+
+function tabelaconta (){
+      $infort = conta();
+      echo'<table border="0" ><tr><td width="152"><strong>Nome:</strong></td><td width="300">';
+      $infort->getNome();
+      echo'</td></tr><tr><td><strong>Usuario:</strong></td><td>';
+      $infort->getUsuario();
+      echo'</td></tr><tr><td><strong>Email:</strong></td><td>';
+      $infort->getEmail();
+      echo'</td></tr><tr><td><strong>Data de Nascimento:</strong></td><td>';
+      $infort->getData();
+      echo'</td></tr><tr><td><strong>Lc</strong></td><td>';
+      $infort->getLc();
+      echo'</td></tr></table>';
+}
+
+//Monta a tabela de personagens
+
+function tabelaherois () {
+      $id = $_SESSION['id'];
+      $pdo = db_connect_gamedata();
+      $cmd = $pdo->prepare("SELECT id_idx, name, hero_type, baselevel, exp FROM u_hero WHERE id_idx = :id ORDER BY baselevel Desc Limit 3");
+      $cmd->bindValue(":id",$id);
+      $cmd->execute();
+      $herois = $cmd->fetchAll(PDO::FETCH_ASSOC);
+      $table = '<table cellspacing="0" cellpadding="3" rules="all" bordercolor="#CCCCCC" border="1" id="DataGrid1" bgcolor="White">
+                <tr bgcolor="#FFFF99">
+                <td width="613px" align="center"><strong>Herois da Conta</strong></tr></tbody></table>
+                <table cellspacing="0" cellpadding="3" rules="all" bordercolor="#CCCCCC" border="1" id="DataGrid1" bgcolor="White">
+                <tbody><tr bgcolor="#FFFF99">
+                <td width="240" align="center"><strong>Nick</strong></td>
+                <td width="56" align="center"><strong>Heroi</strong></td>
+                <td width="56" align="center"><strong>Level</strong></td>
+                <td width="240" align="center"><strong>Exp</strong></td></tr>';
+      foreach($herois as $row) {
+         $table .= '<tr>
+              <td align="center">'.$row["name"].'</td>
+              <td align="center"><img src="imagens/site/hero/'.$row["hero_type"].'.gif"></td>
+              <td align="center">'.$row["baselevel"].'</td>
+              <td align="center">'.$row["exp"].'</td>
+          </tr>';
+      }  
+      $table .= '</tbody></table>';
+      echo $table;
+}
+
+//Monta a tabela de compras recentes
+
+function tabelacompras () {
+      $id = $_SESSION['id'];
+      $pdo = db_connect_web_data();
+      $cmd = $pdo->prepare("SELECT id, data, hora, valor, lc FROM shopl WHERE id_idx = :id ORDER BY id Desc Limit 6");
+      $cmd->bindValue(":id",$id);
+      $cmd->execute();
+      $logs = $cmd->fetchAll(PDO::FETCH_ASSOC);
+      $table = '<table cellspacing="0" cellpadding="3" rules="all" bordercolor="#CCCCCC" border="1" id="DataGrid1" bgcolor="White">
+        <tr bgcolor="#FFFF99">
+        <td width="613px" align="center"><strong>Compras Recentes</strong></tr></tbody></table>
+        <table cellspacing="0" cellpadding="3" rules="all" bordercolor="#CCCCCC" border="1" id="DataGrid1" bgcolor="White">
+        <tbody><tr bgcolor="#FFFF99">
+        <td width="147" align="center"><strong>Id</strong></td>
+        <td width="176" align="center"><strong>Data</strong></td>
+        <td width="100" align="center"><strong>Hora</strong></td>
+        <td width="76" align="center"><strong>Valor</strong></td>
+        <td width="86" align="center"><strong>Lc</strong></td>
+        </tr>';
+     foreach($logs as $row) {
+         $table .= '<tr>
+            <td>'.$row["id"].'</td> 
+            <td>'.$row["data"].'</td> 
+            <td>'.$row["hora"].'</td> 
+            <td>'.$row["valor"].'</td> 
+            <td>'.$row["lc"].'</td> 
+            </tr>';
+        }
+    $table .= '</tbody></table>';
+    echo $table;
+}
 ?>

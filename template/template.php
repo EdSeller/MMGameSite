@@ -148,7 +148,7 @@
                                    <div class="navbacktop">
                                      <table id="newnav" style="width:100%" border-spacing="0px" border-width="0px" border="0px" cellspacing="0px">
                                        <tr>
-                                     <td><div class="navtext"><a id="navl" href="raking"><div id="fundo-texto"><div class="reddot"></div>Ranking</div></div></a><div class="navtextbreak"></div></td>
+                                     <td><div class="navtext"><a id="navl" href="ranking"><div id="fundo-texto"><div class="reddot"></div>Ranking</div></div></a><div class="navtextbreak"></div></td>
                                      </tr><tr>
                                      <td><div class="navtext"><a id="navl" href="pesquisar-ranking"><div id="fundo-texto"><div class="reddot"></div>Pesquisar Ranking</div></div></a><div class="navtextbreak"></div></td>
                                      </tr><tr>
