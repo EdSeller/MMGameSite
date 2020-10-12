@@ -4,11 +4,11 @@
 
 class contagroup {
 
-    public $nome;
-    public $usuario;
-    public $email;
-    public $data;
-    public $lc;
+    private $nome;
+    private $usuario;
+    private $email;
+    private $data;
+    private $lc;
 
     public function __construct($nome, $usuario, $email, $data, $lc, $id) {
         $this->nome = $nome;
@@ -492,5 +492,52 @@ function tabelacompras () {
         }
     $table .= '</tbody></table>';
     echo $table;
+}
+
+//Exibe a Tabela de Ranking
+
+function ranking(){
+      $pagina = isset($_POST['pagina']) ? $_POST['pagina'] : '1';
+      $pdo = db_connect_gamedata();
+      $limite = 50;
+      $cmd = $pdo->prepare("SELECT * FROM u_hero WHERE class <> 80 ORDER BY baselevel Desc limit 500");
+      $cmd->execute();
+      $total = $cmd->rowCount(PDO::FETCH_ASSOC);
+      $numPaginas = ceil($total / $limite); 
+      $rank = ($pagina - 1) * $limite; 
+      $cmd = $pdo->prepare("SELECT * FROM u_hero WHERE class <> 80 ORDER BY baselevel Desc limit :inicio , :limite");
+      $cmd->bindParam(":inicio",$rank, PDO::PARAM_INT);
+      $cmd->bindParam(":limite",$limite, PDO::PARAM_INT);
+      $cmd->execute();
+      $herois = $cmd->fetchAll(PDO::FETCH_ASSOC);
+      $table = '
+          <div align="center">
+          <table cellspacing="0" cellpadding="3" rules="all" bordercolor="#CCCCCC" border="1" id="DataGrid1" bgcolor="White">
+          <tbody><tr bgcolor="#FFFF99">
+          <td width="77" align="center"><strong>Rank</strong></td>
+          <td width="353" align="center"><strong>Nick</strong></td>
+          <td width="76" align="center"><strong>Hero</strong></td>
+          <td width="86" align="center"><strong>Level</strong></td>
+          </tr></tbody></table>
+          <table cellspacing="0" cellpadding="3" rules="all" bordercolor="#CCCCCC" border="1" id="DataGrid1" bgcolor="White">
+          <tbody>';
+      foreach($herois as $row) {
+         $table .= ' 
+          <tr>
+          <td width="77" height="31" align="center">'.++$rank.'</td>
+          <td width="353" align="center">'.$row["name"].'</td>
+          <td width="76" align="center"><img src="imagens/site/hero/'.$row["hero_type"].'.gif"></td>
+          <td width="86" align="center">'.$row["baselevel"].'</td>
+          </tr>';
+         }
+        $table .= ' </tbody>
+        <table cellspacing="0" cellpadding="3" rules="all" bordercolor="#CCCCCC" border="1" bgcolor="White"><tbody><tr align="right" bgcolor="#F0F0F0">
+        <td width="613" colspan="2"><font color="#000066"><form action"ranking" method="post" >';
+        for($i = 1; $i < $numPaginas + 1; $i++) {
+        $table .= '<input type="submit" class="resetform" id="pagina" name="pagina" value="'.$i.'"> ';
+        }
+        $table .= ' </form></font></td></tr></tbody></table>
+        </div>';
+        echo $table;
 }
 ?>
