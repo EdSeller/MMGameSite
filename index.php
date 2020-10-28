@@ -8,7 +8,6 @@ session_start();
 require 'includes/config.php';
 require 'includes/functions.php';
 
-
 init();
 
 ?>

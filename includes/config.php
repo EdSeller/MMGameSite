@@ -5,13 +5,18 @@
  *
  * @var string or null
  */
+
 function config($key = '') {
     $config = [
         'name' => 'MixMaster',
         'site_url' => 'http://localhost/',
-        'template_path' => 'template',
-        'content_path' => 'content',
-        'version' => 'v2.0',
+        'template_path_site' => 'template/site',
+        'content_path_site' => 'content/site',
+        'template_path_mall' => 'template/mall',
+        'content_path_mall' => 'content/mall',
+        'template_path_painel' => 'template/painel',
+        'content_path_painel' => 'content/painel',
+        'version' => 'v3.2',
     ];
     return isset($config[$key]) ? $config[$key] : null;
 }
