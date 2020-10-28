@@ -15,5 +15,7 @@ Planejado ser desenvolvido as funçoes de de cadastro, login, sistema de noticia
 Funçoes/Ambientes parcialmente disponiveis:
 
 localhost         = Site principal. 
+
 mall.localhost    = Ambiente destinado a shoping do jogo.
+
 painel.localhost  = Ambiente destinado a equipe de administraçao do jogo.
