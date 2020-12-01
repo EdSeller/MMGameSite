@@ -1,6 +1,3 @@
-
-<div class="tudo">
-<div class="esquerda">
 <div class="meumenue6"> 
 <div class="meumenueb2">
 <form action="super" method="post">
@@ -36,6 +33,9 @@
 <div class="premiumb"><a href="premium"><img src="imagens/mall/button/img14.png"></a></div>
 </div>
 <div class="meio">
+<div class="super"></div>
+<div class="conteudo">
 <?php 
-mall(); 
+mall_produtos(); 
 ?>
+</div>

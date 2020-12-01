@@ -1,6 +1,3 @@
-
-<div class="tudo">
-<div class="esquerda">
 <div class="meumenue4"> 
 <div class="meumenueb">
 <form action="armaduras" method="post">
@@ -20,6 +17,9 @@
 <div class="premiumb"><a href="premium"><img src="imagens/mall/button/img14.png"></a></div>
 </div>
 <div class="meio">
+<div class="armaduras"></div>
+<div class="conteudo">
 <?php 
-mall(); 
+mall_produtos(); 
 ?>
+</div>

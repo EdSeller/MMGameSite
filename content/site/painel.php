@@ -11,7 +11,6 @@
 <div align="center">
 <form method="post" class="buttonline"> <button type="submit" name="" value="" class="css3button">Alterar Senha</button></form>
 <form method="post" class="buttonline"> <button type="submit" name="" value="" class="css3button">Alterar Email</button></form>
-<form method="post" class="buttonline"> <button type="submit" name="" value="" class="css3button">Comprar LC</button></form>
 <form method="post" class="buttonline"> <button type="submit" name="" value="" class="css3button">Shop</button></form>
 <form method="post" class="buttonline"> <button type="submit" name="logout" value="logout" class="css3button">Logout</button></form>
 <div class="namein4"></div>

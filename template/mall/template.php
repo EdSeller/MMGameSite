@@ -21,14 +21,17 @@
 </tr></table>
 </div>
 </div>
-
-
-
 <?php 
 mall_login();
+mall_carrinho_func();
+?>
+<div class="tudo">
+<div class="esquerda">
+<?php 
+mall_menu();
+comprar();
 page_content_mall(); 
 ?>
-
 <div class="spacetds"></div>
 <div class="iss">
 </div>

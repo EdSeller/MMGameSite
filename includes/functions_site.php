@@ -257,22 +257,17 @@ function login($usuario, $senha){
   }
 }
 
-//Get do logout
-
-if(isset($_POST['logout'])) { 
- logout();
-}
-
 //Efetua logout
 
 function logout(){
+  if(isset($_POST['logout'])) { 
   unset ($_SESSION['usuario']);
   unset ($_SESSION['senha']);
   unset ($_SESSION['id']);
   echo "<script>alert('Logout efetuado com sucesso.'); window.location.href='home'; </script>" ;
   exit;
-    }
-
+  }
+}
 //Checa acesso as funçoes de painel
 
 function painelp() {

@@ -33,6 +33,7 @@
                 <div class="login0">
                     <div class="login1">
                       <?php
+                      logout();
                       if (isset($_SESSION['usuario'])){
                           echo '<a href="painel" class="classelink">Painel</a>' ;
                         }else{

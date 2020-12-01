@@ -1,5 +1,3 @@
-<div class="tudo">
-<div class="esquerda">
 <div class="premiumb"><a href="premium"><img src="imagens/mall/button/img14.png"></a></div>
 </div>
 <div class="meio">
@@ -36,6 +34,9 @@
 </form></div>
 </div>
 </div>
+<div class="meio">
+<div class="conteudo">
 <?php 
-mall_all(); 
+mall_produtos(); 
 ?>
+</div>
