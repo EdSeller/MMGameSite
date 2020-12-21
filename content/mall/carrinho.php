@@ -2,6 +2,7 @@
 </div>
 <div class="meio">
 <?php 
+painelp();
 comprar_tudo();
 mall_carrinho();
 ?>

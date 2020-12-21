@@ -3,4 +3,6 @@
 <div class="meio">
 <?php 
 painelp();
+tabelacompras();
+
 ?>

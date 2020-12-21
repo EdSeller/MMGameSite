@@ -22,6 +22,7 @@
 </div>
 </div>
 <?php 
+logout();
 mall_login();
 mall_carrinho_func();
 ?>

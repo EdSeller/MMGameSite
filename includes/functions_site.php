@@ -2,6 +2,17 @@
 
 //Exibe conteudo de site
 
+
+function mall_url() {
+  $url = config('mall_url');
+  return $url;
+}
+
+function facebook_url() {
+  $url = config('facebook_url');
+  return $url;
+}
+
 function page_content_site() {
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     $path = getcwd() . '/' . config('content_path_site') . '/' . $page . '.php';
@@ -247,7 +258,7 @@ function login($usuario, $senha){
       $_SESSION['senha'] = $senha;
       $inforl = conta();
       $_SESSION['id'] = $inforl->getId();
-      echo "<script>alert('Login efetuado com sucesso.'); window.location.href='painel'; </script>" ;
+      echo "<script>window.location.href='painel'; </script>" ;
       exit;
     }else{
     unset ($_SESSION['usuario']);
@@ -264,7 +275,7 @@ function logout(){
   unset ($_SESSION['usuario']);
   unset ($_SESSION['senha']);
   unset ($_SESSION['id']);
-  echo "<script>alert('Logout efetuado com sucesso.'); window.location.href='home'; </script>" ;
+  echo "<script>window.location.href='home'; </script>" ;
   exit;
   }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <title>
@@ -15,8 +14,8 @@
     <div class="cinza">
         <div class="cinza2">
             <div class="cinza3">
-                <a href="mall.site/home"><img src="imagens/site/button/img6.png"></a>
-                <a href="https://www.facebook.com/mixmaster/"><img src="imagens/site/button/img7.png"></a>
+                <a href="<?php echo mall_url(); ?>"><img src="imagens/site/button/img6.png"></a>
+                <a href="<?php echo facebook_url(); ?>"><img src="imagens/site/button/img7.png"></a>
             </div>
             <div class="cinza4">
                 <marquee behavior="scroll" scrollamount="4" direction="right">
@@ -218,7 +217,7 @@
                 </div>
             </div>
             <div class="orange2">
-                <a href="mall.site/home"><img src="imagens/site/button/img3.png"></a>
+                <a href="<?php echo mall_url(); ?>"><img src="imagens/site/button/img3.png"></a>
             </div>
         </div>
     </div>

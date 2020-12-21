@@ -128,10 +128,11 @@ function table($produtos, $numPaginas){
         return $table;
 }
 
-//Script de compra para items 
+//Script de compra para items do carrinho
 
 function comprar_tudo(){
   if (isset($_POST['comprartudo'])){
+    acao_mall();
     $pdo = db_connect_web_data();
     $pdom = db_connect_member();
     $infort = conta();
@@ -186,8 +187,11 @@ function comprar_tudo(){
    }
   }
 
+//Script de compra de somente 1 item
+
 function comprar() {
   if (isset($_POST['CompraId'])){
+      acao_mall();
       $iditem = ($_POST['CompraId']);
       $pdo = db_connect_web_data();
       $pdom = db_connect_member();
@@ -321,17 +325,22 @@ function mall_carrinho_func() {
       }
 // Adiciona o item do carrinho de compras
     if (isset($_POST['adicionar'])){
+      acao_mall();
       $id = ($_POST['adicionar']);
     if(!isset($_SESSION['carrinho'][$id])){
+      acao_mall();
       $_SESSION['carrinho'][$id] = 1;
     }else{
+      acao_mall();
       $_SESSION['carrinho'][$id] += 1;
     }
   }
 //Remove o item do carrinho de compras
     if (isset($_POST['remover'])){
+    acao_mall();
       $id = ($_POST['remover']);
     if(isset($_SESSION['carrinho'][$id])){
+    acao_mall();
       unset($_SESSION['carrinho'][$id]);
     }
   }
@@ -339,6 +348,7 @@ function mall_carrinho_func() {
 
 // Altera a quantidade do item no carrinho de compras
     if (isset($_POST['prod'])){
+    acao_mall();
     if(is_array($_POST['prod'])){
       foreach($_POST['prod'] as $id => $qtd){
         $id  = intval($id);
@@ -355,6 +365,7 @@ function mall_carrinho_func() {
 // Exibe conteudo do carrinho de compras
 
 function mall_carrinho (){
+     acao_mall();
      if(count($_SESSION['carrinho']) == 0){
        echo '
       <div class="carrinho"></div>
@@ -426,4 +437,24 @@ function mall_carrinho (){
     echo $table;
     }
 }
+
+// Function nao deixa efetuar açoes sem estar logado
+
+function acao_mall() {
+  $usuario = $_SESSION['usuario'];
+  $senha = $_SESSION['senha'];
+   $pdo = db_connect_member();
+   $cmd = $pdo->prepare("select id_idx from Player where PlayerID = :usuario AND  Passwd = :senha");
+      $cmd->bindValue(":usuario",$usuario);
+      $cmd->bindValue(":senha",$senha);
+      $cmd->execute();
+      if($cmd->rowCount() > 0) {
+    } else {
+      unset ($_SESSION['usuario']);
+      unset ($_SESSION['senha']);
+      echo "<script>alert('Voce precisa estar logado para efetuar essa açao.'); window.location.href='login'; </script>" ;
+      exit;
+   }
+}
+
 ?>
