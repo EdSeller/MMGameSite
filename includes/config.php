@@ -16,6 +16,10 @@ function config($key = '') {
         'content_path_mall' => 'content/mall',
         'template_path_painel' => 'template/painel',
         'content_path_painel' => 'content/painel',
+        'template_path_registro' => 'template/registro',
+    //configura url do Mall e faceboook
+        'mall_url' => 'http://mall.localhost/',
+        'facebook_url' => 'https://www.facebook.com/groups/projetomixmaster',
         'version' => 'v3.2',
     ];
     return isset($config[$key]) ? $config[$key] : null;
